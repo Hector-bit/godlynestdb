@@ -6,8 +6,8 @@ export class Artist {
   @Prop({ required: true })
   name: string
 
-  @Prop({ unique: true, required: true })
-  artistName: string
+  @Prop({ unique: true })
+  artistName?: string
 }
 
 export const ArtistSchema = SchemaFactory.createForClass(Artist);

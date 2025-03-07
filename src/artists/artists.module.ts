@@ -14,6 +14,7 @@ import { ArtistsService } from './artist.service';
       }
     ])
   ],
-  providers: [ArtistsService]
+  providers: [ArtistsService],
+  controllers: [ArtistsController]
 })
 export class ArtistsModule {}
