@@ -21,10 +21,10 @@ export class SongsController {
   }
 
   // artist id for param
-  @Post(':id')
+  @Post()
   @UsePipes(new ValidationPipe())
   createSong(
-    @Param('id') id:string,
+    // @Param('id') id:string,
     @Body() createSongDto: CreateSongDto
   ){
     console.log('new song being added: ', createSongDto)

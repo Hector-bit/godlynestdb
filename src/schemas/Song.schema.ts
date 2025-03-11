@@ -10,7 +10,7 @@ export class Song {
   artistId: string
 
   @Prop({ type: mongoose.Types.ObjectId, ref: 'Album', required: false})
-  albumId: string
+  albumId?: string
 }
 
 export const SongSchema = SchemaFactory.createForClass(Song)
