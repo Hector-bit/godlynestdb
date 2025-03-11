@@ -20,7 +20,7 @@ export class SongsService{
     return this.songModel.findById(id)
   }
 
-  async createSong({ ...createSongDto}: CreateSongDto) {
+  async createSong({ ...createSongDto }: CreateSongDto) {
     // just making sure the artist exists first
     const findArtist = await this.artistModel.findById(createSongDto.artistId)
     if(!findArtist) throw new HttpException('artist not found', 404)
