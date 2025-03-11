@@ -10,12 +10,13 @@ export class ArtistsController {
 
   constructor(private artistsService: ArtistsService){}
 
+  // GET ALL ARTISTS
   @Get()
   getUsers(){
     return this.artistsService.getArtists();
   }
 
-
+  // GET SINGLE ARTIST
   @Get(':id')
   async getArtistById(@Param('id') id:string){
     mongoose.Types.ObjectId.isValid(id)
@@ -28,6 +29,7 @@ export class ArtistsController {
     return findArtist
   }
 
+  // CREATE ARTIST
   @Post()
   @UsePipes(new ValidationPipe())
   createArtist(@Body() createArtistDto: CreateArtistDto) {
@@ -35,6 +37,7 @@ export class ArtistsController {
     return this.artistsService.createArtist(createArtistDto);
   }
 
+  // PATCH ARTIST
   @Patch(':id')
   @UsePipes(new ValidationPipe())
   async updateArtist(
@@ -48,6 +51,7 @@ export class ArtistsController {
     return updatedArtist
   }
 
+  // DELETE ARTIST
   @Delete(':id')
   async deleteUser(@Param('id') id: string){
     const isValid = mongoose.Types.ObjectId.isValid(id)
