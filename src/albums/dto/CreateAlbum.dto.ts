@@ -20,5 +20,9 @@ export class AddSongsToAlbumDto {
   @IsNotEmpty()
   @IsArray()
   @IsString({ each: true})
-  albumSongs?: string[]
+  albumSongs: string[]
+
+  @IsNotEmpty()
+  @IsString()
+  artistId: string
 }

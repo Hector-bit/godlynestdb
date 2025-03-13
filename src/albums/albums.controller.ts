@@ -25,6 +25,7 @@ export class AlbumsController {
     @Param('id') id: string,
     @Body() addSongToAlbumDto: AddSongsToAlbumDto
   ){
+    // this.albumsService.addSongsToAlbum
     return 'this is to add songs to albums'
   }
 

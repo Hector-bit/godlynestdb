@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { Album } from "src/schemas/Album.schema";
-import { CreateAlbumDto } from "./dto/CreateAlbum.dto";
+import { AddSongsToAlbumDto, CreateAlbumDto } from "./dto/CreateAlbum.dto";
 import { CreateSongDto } from "src/songs/dto/CreateSong.dto";
 
 
@@ -22,6 +22,10 @@ export class AlbumsService{
 
     return saveAlbum
   }
+
+  // async addSongsToAlbum({ ...addSongsToAlbumDto }: AddSongsToAlbumDto){
+  //   const 
+  // }
 }
 
 
