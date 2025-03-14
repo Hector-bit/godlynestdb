@@ -12,8 +12,10 @@ export class ArtistsController {
 
   // GET ALL ARTISTS
   @Get()
-  getUsers(){
-    return this.artistsService.getArtists();
+  async getUsers(){
+    let artists = await this.artistsService.getArtists();
+    console.log('my artists: ', artists)
+    return artists
   }
 
   // GET SINGLE ARTIST

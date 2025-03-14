@@ -7,6 +7,8 @@ import { SongsModule } from './songs/songs.module';
 import { AlbumsModule } from './albums/albums.module';
 import { ConfigModule } from '@nestjs/config';
 
+console.log('mongo url: ', process.env.MONGO_URL)
+
 @Module({
   imports: [
     ConfigModule.forRoot({
