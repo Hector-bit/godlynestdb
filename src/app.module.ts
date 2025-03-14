@@ -7,14 +7,12 @@ import { SongsModule } from './songs/songs.module';
 import { AlbumsModule } from './albums/albums.module';
 import { ConfigModule } from '@nestjs/config';
 
-const mongoURI = process.env.MONGO_URI
-
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true
     }),
-    MongooseModule.forRoot(mongoURI as string),
+    MongooseModule.forRoot(process.env.MONGO_URL as string),
     ArtistsModule,
     SongsModule,
     AlbumsModule
