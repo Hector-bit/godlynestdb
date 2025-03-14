@@ -12,10 +12,10 @@ export class Artist {
   @Prop({ unique: true })
   artistName?: string
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Album' })
+  @Prop({ type:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Album' }] })
   albums?: Album[]
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Song' })
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Song'}] })
   songs?: Song[]
 }
 

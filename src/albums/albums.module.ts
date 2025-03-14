@@ -14,6 +14,10 @@ import { Album, AlbumSchema } from 'src/schemas/Album.schema';
       {
         name: Album.name,
         schema: AlbumSchema
+      },
+      {
+        name: Artist.name,
+        schema: ArtistSchema
       }
     ])
   ],
