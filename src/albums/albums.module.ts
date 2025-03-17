@@ -27,3 +27,4 @@ import { ArtistsService } from 'src/artists/artist.service';
 })
 
 export class AlbumsModule {}
+

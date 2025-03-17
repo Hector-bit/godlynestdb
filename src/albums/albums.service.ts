@@ -28,11 +28,17 @@ export class AlbumsService{
     const savedAlbum = await newAlbum.save()
 
     //step three update artist albums by adding newly created album
-    findArtist.updateOne({ 
+    await findArtist.updateOne({ 
       $push: {
         albums: savedAlbum._id
       }
     })
+
+    // alternative that uses the findByIdAndUpdate instead of updateOne, but the orginal issue is that I wasn't awaiting the findArtist.updateOne 
+    // so thats why it wasn't adding the newly created album to the artist instance
+    // await this.artistModel.findByIdAndUpdate(artistId, {
+    //   $push: { albums: savedAlbum._id }
+    // });
 
     return savedAlbum;
   }
