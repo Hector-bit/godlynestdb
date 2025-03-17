@@ -24,13 +24,15 @@ export class AlbumsService{
     if(!findArtist) throw new HttpException('artist not found', 404)
 
     //step two create and save album
-    const newAlbum = new this.albumModel(createAlbumDto)
+    const newAlbum = new this.albumModel({...createAlbumDto, artistId: artistId})
     const savedAlbum = await newAlbum.save()
 
     //step three update artist albums by adding newly created album
-    findArtist.updateOne({ $push: {
-      albums: savedAlbum._id
-    }})
+    findArtist.updateOne({ 
+      $push: {
+        albums: savedAlbum._id
+      }
+    })
 
     return savedAlbum;
   }

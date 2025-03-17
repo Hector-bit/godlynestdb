@@ -25,7 +25,7 @@ export class ArtistsService {
   }
 
   getArtistById(id: string){
-    return this.artistModel.findById(id)
+    return this.artistModel.findById(id).populate('albums')
   }
 
   updateArtist(id: string, updateArtistDto: UpdateArtistDto) {

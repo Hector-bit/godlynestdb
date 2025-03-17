@@ -5,8 +5,11 @@ import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 export class Album {
   @Prop({ required: true })
   albumName: string
+
+  @Prop({ required: true})
   artistId: string
   //string of id's right?
+  @Prop()
   albumSongs?: string[]
 
 }

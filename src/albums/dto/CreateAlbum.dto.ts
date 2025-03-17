@@ -4,11 +4,11 @@ import { isArray, IsArray, IsNotEmpty, IsOptional, IsString } from "class-valida
 export class CreateAlbumDto {
   @IsNotEmpty()
   @IsString()
-  albumName: string
-
+  artistId: string
+  
   @IsNotEmpty()
   @IsString()
-  artistId: string
+  albumName: string
 
   @IsOptional()
   @IsArray()

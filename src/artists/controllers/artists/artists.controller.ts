@@ -14,7 +14,7 @@ export class ArtistsController {
   @Get()
   async getUsers(){
     let artists = await this.artistsService.getArtists();
-    console.log('my artists: ', artists)
+    // console.log('my artists: ', artists)
     return artists
   }
 
@@ -35,7 +35,7 @@ export class ArtistsController {
   @Post()
   @UsePipes(new ValidationPipe())
   createArtist(@Body() createArtistDto: CreateArtistDto) {
-    console.log('my artist dto: ', createArtistDto)
+    // console.log('my artist dto: ', createArtistDto)
     return this.artistsService.createArtist(createArtistDto);
   }
 
