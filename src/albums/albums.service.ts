@@ -18,6 +18,10 @@ export class AlbumsService{
     return this.albumModel.find()
   }
 
+  async getAlbumsByArtistId(artistId: string){
+    return this.albumModel.find({ artistId: artistId })
+  }
+
   async createAlbum({ artistId, ...createAlbumDto }: CreateAlbumDto){
     //step one find user
     const findArtist = await this.artistModel.findById(artistId)

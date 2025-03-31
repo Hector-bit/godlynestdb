@@ -29,7 +29,7 @@ export class SongsService{
     const newSong = new this.songModel(createSongDto)
     const savedSong = await newSong.save()
 
-    findArtist.updateOne({ 
+    await findArtist.updateOne({ 
       $push: {
         songs: savedSong._id
       }

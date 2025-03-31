@@ -13,6 +13,13 @@ export class AlbumsController {
     return this.albumsService.getAlbums()
   }
 
+  @Get(':id')
+  async getAlbumByArtistId(
+    @Param('id') id: string
+  ){
+    return this.albumsService.getAlbumsByArtistId(id)
+  }
+
   @Post()
   createAlbums(
     @Body() createAlbumDto: CreateAlbumDto
