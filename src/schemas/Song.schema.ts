@@ -11,6 +11,15 @@ export class Song {
 
   @Prop({ type: mongoose.Types.ObjectId, ref: 'Album', required: false})
   albumId?: string
+
+  @Prop({ required: false})
+  spotifyLink?: string
+
+  @Prop({ required: false})
+  youtubeLink?: string
+
+  @Prop({ required: false })
+  soundCloundLink?: string
 }
 
 export const SongSchema = SchemaFactory.createForClass(Song)
