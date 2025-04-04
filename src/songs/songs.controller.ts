@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Delete, Body, UsePipes, ValidationPipe, Param } from "@nestjs/common";
+import { Controller, Post, Get, Delete, Body, UsePipes, ValidationPipe, Param, Query } from "@nestjs/common";
 import { CreateSongDto } from "./dto/CreateSong.dto";
 import { SongsService } from "./songs.service";
 import mongoose from "mongoose";
@@ -8,17 +8,21 @@ export class SongsController {
   constructor(private songsService: SongsService){}
 
   @Get()
-  findSongs(){
+  findSongs(@Query() query: { albumId: string, artistId: string }){
+    if(query){
+      return this.songsService.getSongs(query);
+    }
+
     return this.songsService.getSongs();
   }
 
-  // artist id for param
-  @Get(':id')
-  async getSongsById(
-    @Param('id') id: string
-  ){
-    return this.songsService.getSongsByArtistId(id)
-  }
+  // song id for param for del, put, etc.
+  // @Get(':id')
+  // async getSongsById(
+  //   @Param('id') id: string
+  // ){
+  //   return this.songsService.getSongsByArtistId(id)
+  // }
 
   // artist id for param
   @Post()

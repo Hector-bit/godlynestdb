@@ -12,8 +12,12 @@ export class SongsService{
     @InjectModel(Artist.name) private artistModel:Model<Artist>
   ){}
 
-  getSongs() {
-    return this.songModel.find()
+  async getSongs( query?: { artistId?: string, albumId?: string }) {
+    const filterBody: any = {}
+    if(query && query.artistId){ filterBody.artistId = query.artistId}
+    if(query && query.albumId){ filterBody.albumId = query.albumId}
+
+    return this.songModel.find(filterBody)
   }
 
   getSongsByArtistId(id:string) {

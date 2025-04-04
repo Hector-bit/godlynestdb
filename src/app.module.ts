@@ -7,14 +7,19 @@ import { SongsModule } from './songs/songs.module';
 import { AlbumsModule } from './albums/albums.module';
 import { ConfigModule } from '@nestjs/config';
 
-console.log('mongo url: ', process.env.MONGO_URL)
+// const password = process.env.MONGOPASSWORD
+// const mongo_url = process.env.MONGO_URL
+
+console.log('mongo url: ', process.env.MONGO_PUBLIC_URL)
+
+// const myUrl = ``
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true
     }),
-    MongooseModule.forRoot(process.env.MONGO_URL as string),
+    MongooseModule.forRoot(process.env.MONGO_PUBLIC_URL as string, { dbName: 'godlyProd' }),
     ArtistsModule,
     SongsModule,
     AlbumsModule
