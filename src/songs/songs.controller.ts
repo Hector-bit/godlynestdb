@@ -8,7 +8,11 @@ export class SongsController {
   constructor(private songsService: SongsService){}
 
   @Get()
-  findSongs(@Query() query: { albumId: string, artistId: string }){
+  findSongs(@Query() query: { albumId: string, artistId: string, isSingle: boolean }){
+
+    // if(query && query.isSingle){
+    //   return this.songsService.getSingles(query);
+    // }
     if(query){
       return this.songsService.getSongs(query);
     }
@@ -17,12 +21,12 @@ export class SongsController {
   }
 
   // song id for param for del, put, etc.
-  // @Get(':id')
-  // async getSongsById(
-  //   @Param('id') id: string
-  // ){
-  //   return this.songsService.getSongsByArtistId(id)
-  // }
+  @Get(':id')
+  async getSongsById(
+    @Param('id') id: string
+  ){
+    return this.songsService.getSongBySongId(id)
+  }
 
   // artist id for param
   @Post()

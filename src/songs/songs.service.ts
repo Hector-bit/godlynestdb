@@ -12,15 +12,31 @@ export class SongsService{
     @InjectModel(Artist.name) private artistModel:Model<Artist>
   ){}
 
-  async getSongs( query?: { artistId?: string, albumId?: string }) {
+  async getSongs( query?: { artistId?: string, albumId?: string, isSingle?: boolean }) {
     const filterBody: any = {}
     if(query && query.artistId){ filterBody.artistId = query.artistId}
     if(query && query.albumId){ filterBody.albumId = query.albumId}
 
+    if(query && !query.albumId && query.isSingle){ filterBody.albumId = { $exists: false } }
+
+    console.log('get songs filter body', filterBody)
+
     return this.songModel.find(filterBody)
   }
 
-  getSongsByArtistId(id:string) {
+  async getSingles( query?: { artistId: string, isSingle: boolean }) {
+    const filterBody: any = { artistId: query?.artistId, albumId: { $exists: false } }
+    // if(query && query.artistId !== ''){ filterBody.artistId = query.artistId}
+    // if(query && query.albumId !== ''){ filterBody.albumId = query.albumId}
+    // if(query && query.isSingle){ filterBody.albumId = { $exists: false } }
+
+    console.log('get singles filter body', filterBody)
+
+    return this.songModel.find(filterBody)
+  }
+
+
+  getSongBySongId(id:string) {
     return this.songModel.findById(id)
   }
 

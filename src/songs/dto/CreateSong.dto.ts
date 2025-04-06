@@ -13,5 +13,17 @@ export class CreateSongDto {
   @IsString()
   @IsOptional()
   albumId?: string;
+
+  @IsString()
+  @IsOptional()
+  spotifyLink?: string;
+
+  @IsString()
+  @IsOptional()
+  youtubeLink?: string;
+
+  @IsString()
+  @IsOptional()
+  soundCloudLink?: string;
 }
 
