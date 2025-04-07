@@ -58,9 +58,8 @@ export class ArtistsController {
   async deleteUser(@Param('id') id: string){
     const isValid = mongoose.Types.ObjectId.isValid(id)
     if(!isValid) throw new HttpException('Invalid id', 400)
-    const deleteUser = await this.artistsService.deleteUser(id)
+    const deleteUser = await this.artistsService.deleteArtist(id)
     if(!deleteUser) throw new HttpException('User not found', 404)
-    return;
+    return 'DELETED ARTIST';
   }
-
 }

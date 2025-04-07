@@ -5,6 +5,7 @@ import { Artist } from "src/schemas/Artist.schema";
 import { CreateArtistDto } from "./dto/CreateArtist.dto";
 import { UpdateArtistDto } from "./dto/UpdateArtist.dto";
 import { Album } from "src/schemas/Album.schema";
+import { Song } from "src/schemas/Song.schema";
 
 
 @Injectable()
@@ -12,7 +13,8 @@ import { Album } from "src/schemas/Album.schema";
 export class ArtistsService {
   constructor(
     @InjectModel(Artist.name) private artistModel: Model<Artist>,
-    // @InjectModel(Album.name) private albumModel: Model<Album>
+    @InjectModel(Album.name) private albumModel: Model<Album>,
+    @InjectModel(Song.name) private songModel: Model<Song>
   ){}
 
   createArtist(createArtistDto:CreateArtistDto){
@@ -32,8 +34,11 @@ export class ArtistsService {
     return this.artistModel.findByIdAndUpdate(id, updateArtistDto, { new: true })
   }
 
-  deleteUser(id: string){
-    return this.artistModel.findByIdAndDelete(id)
+  async deleteArtist(id: string){
+    await this.albumModel.deleteMany({ artistId: id })
+    await this.songModel.deleteMany({ artistId: id })
+    const deletedArtist = await this.artistModel.findByIdAndDelete(id)
+    return deletedArtist
   }
 
 }

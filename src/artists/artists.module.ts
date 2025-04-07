@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Artist, ArtistSchema } from 'src/schemas/Artist.schema';
 import { ArtistsService } from './artist.service';
 import { Album, AlbumSchema } from 'src/schemas/Album.schema';
+import { Song, SongSchema } from 'src/schemas/Song.schema';
 
 @Module({
   imports: [
@@ -16,6 +17,10 @@ import { Album, AlbumSchema } from 'src/schemas/Album.schema';
       {
         name: Album.name,
         schema: AlbumSchema
+      },
+      {
+        name: Song.name,
+        schema: SongSchema
       }
     ])
   ],
