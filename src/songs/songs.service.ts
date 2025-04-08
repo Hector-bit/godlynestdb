@@ -69,7 +69,8 @@ export class SongsService{
 
     return savedSong
   }
+  async deleteSong( songId: string ) {
 
-  //TODO: add updateSong fn
+  }
 }
 

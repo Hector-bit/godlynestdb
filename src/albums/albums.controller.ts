@@ -18,7 +18,8 @@ export class AlbumsController {
     @Param('id') id: string
   ){
     const album = await this.albumsService.getAlbumsByAlbumId(id)
-    return album
+    // console.log('MY ALBUM: ', album)
+    return album[0]
   }
 
   @Post()
@@ -46,7 +47,7 @@ export class AlbumsController {
 
   @Delete(':id')
   async deleteAlbum(@Param('id') id:string){
-    return 'this deletes an album'
+    return this.albumsService.deleteAlbum(id)
   }
 }
 

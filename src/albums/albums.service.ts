@@ -51,9 +51,12 @@ export class AlbumsService{
     return savedAlbum;
   }
 
-  // async addSongsToAlbum({ ...addSongsToAlbumDto }: AddSongsToAlbumDto){
-  //   const 
-  // }
+  async deleteAlbum( albumId: string ){
+    // await this.artistModel.deleteMany({ albums: id })
+    await this.songModel.deleteMany({ albumId: albumId })
+    const deletedAlbum = await this.albumModel.findByIdAndDelete(albumId)
+    return deletedAlbum
+  }
 }
 
 
