@@ -5,7 +5,6 @@ import { AlbumsController } from './albums.controller';
 import { AlbumsService } from './albums.service';
 import { Artist, ArtistSchema } from 'src/schemas/Artist.schema';
 import { Album, AlbumSchema } from 'src/schemas/Album.schema';
-import { ArtistsService } from 'src/artists/artist.service';
 
 
 @Module({
@@ -19,6 +18,10 @@ import { ArtistsService } from 'src/artists/artist.service';
       {
         name: Artist.name,
         schema: ArtistSchema
+      },
+      {
+        name: Song.name,
+        schema: SongSchema
       }
     ])
   ],

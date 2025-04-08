@@ -14,10 +14,11 @@ export class AlbumsController {
   }
 
   @Get(':id')
-  async getAlbumByArtistId(
+  async getAlbumByAlbumId(
     @Param('id') id: string
   ){
-    return this.albumsService.getAlbumsByArtistId(id)
+    const album = await this.albumsService.getAlbumsByAlbumId(id)
+    return album
   }
 
   @Post()

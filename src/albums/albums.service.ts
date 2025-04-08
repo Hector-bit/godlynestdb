@@ -5,21 +5,25 @@ import { Album } from "src/schemas/Album.schema";
 import { AddSongsToAlbumDto, CreateAlbumDto } from "./dto/CreateAlbum.dto";
 import { CreateSongDto } from "src/songs/dto/CreateSong.dto";
 import { Artist } from "src/schemas/Artist.schema";
+import { Song } from "src/schemas/Song.schema";
 
 
 @Injectable()
 export class AlbumsService{
   constructor(
     @InjectModel(Album.name) private albumModel:Model<Album>,
-    @InjectModel(Artist.name) private artistModel:Model<Artist>
+    @InjectModel(Artist.name) private artistModel:Model<Artist>,
+    @InjectModel(Song.name) private songModel:Model<Song>
   ){}
 
   getAlbums(){
     return this.albumModel.find()
   }
 
-  async getAlbumsByArtistId(artistId: string){
-    return this.albumModel.find({ artistId: artistId })
+  async getAlbumsByAlbumId(albumId: string){
+    const foundAlbum = this.albumModel.find({ _id: albumId }).populate('albumSongs')
+    // console.log('album found: ', foundAlbum)
+    return foundAlbum
   }
 
   async createAlbum({ artistId, ...createAlbumDto }: CreateAlbumDto){
