@@ -5,21 +5,18 @@ import { Song } from "./Song.schema";
 
 //schema tells mongoose there is a schema
 @Schema()
-export class Artist {
+export class Event {
   @Prop({ required: true })
-  name: string
+  eventTitle: string
 
   @Prop({ })
-  artistName?: string
+  eventDescription?: string
 
   @Prop({ type:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Album' }] })
-  albums?: Album[]
-
-  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Song'}] })
-  songs?: Song[]
+  eventLink?: string
 }
 
-export const ArtistSchema = SchemaFactory.createForClass(Artist);
+export const EventSchema = SchemaFactory.createForClass(Event);
 
 
 

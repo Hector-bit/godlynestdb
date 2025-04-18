@@ -10,7 +10,7 @@ import { ConfigModule } from '@nestjs/config';
 // const password = process.env.MONGOPASSWORD
 // const mongo_url = process.env.MONGO_URL
 
-console.log('mongo url: ', process.env.MONGO_PUBLIC_URL)
+// console.log('mongo url: ', process.env.MONGO_PUBLIC_URL)
 
 // const myUrl = ``
 
