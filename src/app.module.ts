@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SongsModule } from './songs/songs.module';
 import { AlbumsModule } from './albums/albums.module';
 import { ConfigModule } from '@nestjs/config';
+import { EventsModule } from './events/events.module';
 
 // const password = process.env.MONGOPASSWORD
 // const mongo_url = process.env.MONGO_URL
@@ -22,7 +23,8 @@ import { ConfigModule } from '@nestjs/config';
     MongooseModule.forRoot(process.env.MONGO_PUBLIC_URL as string, { dbName: 'godlyProd' }),
     ArtistsModule,
     SongsModule,
-    AlbumsModule
+    AlbumsModule,
+    EventsModule
   ],
   controllers: [AppController],
   providers: [

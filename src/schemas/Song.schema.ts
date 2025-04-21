@@ -19,7 +19,7 @@ export class Song {
   youtubeLink?: string
 
   @Prop({ required: false })
-  soundCloundLink?: string
+  soundCloudLink?: string
 }
 
 export const SongSchema = SchemaFactory.createForClass(Song)

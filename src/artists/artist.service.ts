@@ -17,17 +17,20 @@ export class ArtistsService {
     @InjectModel(Song.name) private songModel: Model<Song>
   ){}
 
-  createArtist(createArtistDto:CreateArtistDto){
-    const newArtist = new this.artistModel(createArtistDto);
-    return newArtist.save()
-  }
-
+  // --------------> GET REQUESTS FOR ARTISTS <--------------
   getArtists() {
     return this.artistModel.find();
   }
 
   getArtistById(id: string){
     return this.artistModel.findById(id).populate('albums')
+  }
+  
+  // --------------> POST REQUESTS FOR ARTISTS <--------------
+  
+  createArtist(createArtistDto:CreateArtistDto){
+    const newArtist = new this.artistModel(createArtistDto);
+    return newArtist.save()
   }
 
   updateArtist(id: string, updateArtistDto: UpdateArtistDto) {

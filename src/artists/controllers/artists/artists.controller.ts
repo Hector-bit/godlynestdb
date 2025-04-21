@@ -60,6 +60,6 @@ export class ArtistsController {
     if(!isValid) throw new HttpException('Invalid id', 400)
     const deleteUser = await this.artistsService.deleteArtist(id)
     if(!deleteUser) throw new HttpException('User not found', 404)
-    return 'DELETED ARTIST';
+    return deleteUser;
   }
 }

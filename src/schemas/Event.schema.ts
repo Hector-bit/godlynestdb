@@ -7,13 +7,13 @@ import { Song } from "./Song.schema";
 @Schema()
 export class Event {
   @Prop({ required: true })
-  eventTitle: string
+  title: string
 
-  @Prop({ })
-  eventDescription?: string
+  @Prop()
+  description?: string
 
-  @Prop({ type:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Album' }] })
-  eventLink?: string
+  @Prop()
+  link?: string
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);

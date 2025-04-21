@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 // import { ArtistsController } from './controllers/artists/artists.controller';
-import { EventsController } from './controllers/events.controller';
+import { EventsController } from './events.controller';
 import { EventsService } from './event.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EventSchema, Event } from 'src/schemas/Event.schema';
@@ -19,5 +19,5 @@ import { EventSchema, Event } from 'src/schemas/Event.schema';
   controllers: [EventsController]
 })
 
-export class ArtistsModule {}
+export class EventsModule {}
 

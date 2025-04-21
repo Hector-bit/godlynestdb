@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Delete, Body, UsePipes, ValidationPipe, Param, Query } from "@nestjs/common";
+import { Controller, Post, Get, Delete, Body, UsePipes, ValidationPipe, Param, Query, Put } from "@nestjs/common";
 import { CreateSongDto } from "./dto/CreateSong.dto";
 import { SongsService } from "./songs.service";
 import mongoose from "mongoose";
@@ -37,5 +37,21 @@ export class SongsController {
   ){
     console.log('new song being added: ', createSongDto)
     return this.songsService.createSong(createSongDto)
+  }
+
+  @Put(':id')
+  updateSong(
+    @Param('id') songId: string, 
+    @Body() updateSongDto: CreateSongDto
+  ){
+    console.log('updating song w id: ', songId)
+    return this.songsService.updateSong({songId, ...updateSongDto})
+  }
+
+  @Delete(':id')
+  async deleteSong(
+    @Param('id') songId: string
+  ){
+    return this.songsService.deleteSong(songId)
   }
 }

@@ -5,6 +5,7 @@ import { Song } from "src/schemas/Song.schema";
 import { CreateSongDto } from "./dto/CreateSong.dto";
 import { Artist } from "src/schemas/Artist.schema";
 import { Album } from "src/schemas/Album.schema";
+import { UpdateSongDto } from "./dto/UpdateSong.dto";
 
 @Injectable()
 export class SongsService{
@@ -21,10 +22,12 @@ export class SongsService{
 
     if(query && !query.albumId && query.isSingle){ filterBody.albumId = { $exists: false } }
 
-    console.log('get songs filter body', filterBody)
+    // console.log('get songs filter body', filterBody)
 
     return this.songModel.find(filterBody)
   }
+
+  // --------------> GET REQUESTS FOR SONGS <--------------
 
   async getSingles( query?: { artistId: string, isSingle: boolean }) {
     const filterBody: any = { artistId: query?.artistId, albumId: { $exists: false } }
@@ -41,6 +44,9 @@ export class SongsService{
   getSongBySongId(id:string) {
     return this.songModel.findById(id)
   }
+
+  
+  // --------------> POST REQUESTS FOR SONGS <--------------
 
   async createSong({ ...createSongDto }: CreateSongDto) {
     // just making sure the artist exists first
@@ -69,6 +75,35 @@ export class SongsService{
 
     return savedSong
   }
+
+  
+  // --------------> PUT REQUESTS FOR SONGS <--------------
+  async updateSong( { songId, ...updateSongDto }: UpdateSongDto ){
+    const findSong = await this.songModel.findByIdAndUpdate(
+      songId, 
+      { $set: updateSongDto }, 
+      { new: true, runValidators: true }
+    )
+
+    console.log('found soung: ', findSong)
+
+    console.log('dto updates with: ', updateSongDto)
+
+    // song not found error
+    if(!findSong){
+      throw new Error("Song not found")
+    }
+    // if (createSongDto.songName) findSong.songName = createSongDto.songName;
+    // if (createSongDto.artistId) findSong.artistId = createSongDto.artistId;
+    // if (createSongDto.albumId) findSong.albumId = createSongDto.albumId;
+    // if (createSongDto.spotifyLink) findSong.spotifyLink = createSongDto.spotifyLink;
+    // if (createSongDto.youtubeLink) findSong.youtubeLink = createSongDto.youtubeLink;
+    // if (createSongDto.soundCloudLink) findSong.soundCloudLink = createSongDto.soundCloudLink;
+
+    return findSong
+  }
+  
+  // --------------> DELETE REQUESTS FOR SONGS <--------------
   async deleteSong( songId: string ) {
 
   }
