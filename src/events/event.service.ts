@@ -12,6 +12,10 @@ export class EventsService{
     @InjectModel(Event.name) private eventModel:Model<Song>,
   ){}
   // --------------> GET REQUESTS FOR EVENTS <--------------
+  async getEvent(eventId: string) {
+    return this.eventModel.findById(eventId);
+  }
+
   async getEvents() {
     return this.eventModel.find();
   }

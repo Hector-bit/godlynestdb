@@ -104,8 +104,8 @@ export class SongsService{
   }
   
   // --------------> DELETE REQUESTS FOR SONGS <--------------
-  async deleteSong( songId: string ) {
-
+  async deleteSong( songId: string ) {  
+    await this.songModel.findByIdAndDelete(songId)
   }
 }
 

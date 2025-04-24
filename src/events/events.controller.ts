@@ -1,8 +1,4 @@
-import { Body, Controller, Param, Post, Get, Delete, UsePipes, ValidationPipe, HttpException, Patch } from '@nestjs/common';
-import { ArtistsService } from 'src/artists/artist.service';
-import { CreateArtistDto } from 'src/artists/dto/CreateArtist.dto';
-import mongoose from 'mongoose';
-import { UpdateArtistDto } from 'src/artists/dto/UpdateArtist.dto';
+import { Body, Controller, Param, Post, Get, Delete } from '@nestjs/common';
 import { CreateEventDto } from './dto/createEventDto';
 import { EventsService } from './event.service';
 
@@ -13,11 +9,15 @@ export class EventsController {
   constructor(private eventsService: EventsService){}
 
   // --------------> GET REQUESTS FOR EVENTS <--------------
+  @Get(':id')
+  async getEvent(
+    @Param('id') eventId: string
+  ){
+    return this.eventsService.getEvent(eventId)
+  }
+
   @Get()
   async getEvents(){
-    // let artists = await this.artistsService.getArtists();
-    // // console.log('my artists: ', artists)
-    // return artists
     return this.eventsService.getEvents()
   }
 
@@ -30,6 +30,7 @@ export class EventsController {
   }
 
   // --------------> PUT REQUESTS FOR EVENTS <--------------
+  
   // --------------> DELETE REQUESTS FOR EVENTS <--------------
   @Delete(':id')
   async deleteEvent(

@@ -14,4 +14,8 @@ export class CreateEventDto {
   @IsOptional()
   @IsString()
   link?: string
+
+  @IsOptional()
+  @IsString()
+  imgLink?: string
 }
