@@ -20,7 +20,10 @@ export class ArtistsController {
 
   // GET SINGLE ARTIST
   @Get(':id')
-  async getArtistById(@Param('id') id:string){
+  async getArtistById(
+    @Param('id') id:string
+  ){
+    // console.log('getting: ', id)
     mongoose.Types.ObjectId.isValid(id)
     const isValid = mongoose.Types.ObjectId.isValid(id)
     if(!isValid) throw new HttpException('user not found', 404)
@@ -44,11 +47,12 @@ export class ArtistsController {
   @UsePipes(new ValidationPipe())
   async updateArtist(
     @Param('id') id:string, 
-    @Body() UpdateArtistDto:UpdateArtistDto
+    @Body() updateArtistDto:UpdateArtistDto
   ){
+    console.log('update artist id: ', id, updateArtistDto)
     const isValid = mongoose.Types.ObjectId.isValid(id)
     if(!isValid) throw new HttpException('Invalid id', 400)
-    const updatedArtist = await this.artistsService.updateArtist(id, UpdateArtistDto)
+    const updatedArtist = await this.artistsService.updateArtist(id, updateArtistDto)
     if(!updatedArtist) throw new HttpException('User not found', 404)
     return updatedArtist
   }

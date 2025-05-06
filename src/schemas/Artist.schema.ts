@@ -7,9 +7,9 @@ import { Song } from "./Song.schema";
 @Schema()
 export class Artist {
   @Prop({ required: true })
-  name: string
+  name?: string
 
-  @Prop({ })
+  @Prop()
   artistName?: string
 
   @Prop({ type:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Album' }] })
@@ -17,6 +17,9 @@ export class Artist {
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Song'}] })
   songs?: Song[]
+
+  @Prop({ unique: false })
+  img?: string
 }
 
 export const ArtistSchema = SchemaFactory.createForClass(Artist);

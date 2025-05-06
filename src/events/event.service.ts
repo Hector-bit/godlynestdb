@@ -4,7 +4,7 @@ import { Model } from "mongoose";
 import { Song } from "src/schemas/Song.schema";
 import { Event } from "src/schemas/Event.schema";
 import { CreateEventDto } from "./dto/createEventDto";
-import { error } from "console";
+import { PatchEventDto } from "./dto/patchEvent.dto";
 
 @Injectable()
 export class EventsService{
@@ -24,6 +24,17 @@ export class EventsService{
   async createEvent(createEventDto: CreateEventDto){
     const newEvent = new this.eventModel(createEventDto)
     return newEvent.save()
+  }
+
+  // --------------> PATHC REQUESTS FOR EVENTS <--------------
+  async patchEvent(eventId: string, patchEventDto: PatchEventDto){
+    const patchedEvent = this.eventModel.findByIdAndUpdate(
+      eventId,
+      { $set: patchEventDto }, 
+      { new: true }
+    )
+
+    return patchedEvent
   }
 
   // --------------> DELETE REQUESTS FOR EVENTS <--------------

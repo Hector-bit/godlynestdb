@@ -77,12 +77,12 @@ export class SongsService{
   }
 
   
-  // --------------> PUT REQUESTS FOR SONGS <--------------
+  // --------------> PATCH REQUESTS FOR SONGS <--------------
   async updateSong( { songId, ...updateSongDto }: UpdateSongDto ){
     const findSong = await this.songModel.findByIdAndUpdate(
       songId, 
       { $set: updateSongDto }, 
-      { new: true, runValidators: true }
+      { new: true }
     )
 
     console.log('found soung: ', findSong)

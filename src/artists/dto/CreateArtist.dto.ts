@@ -8,6 +8,9 @@ export class CreateArtistDto {
 
   @IsString()
   artistName?: string
+
+  @IsString()
+  img?: string
 }
 
 

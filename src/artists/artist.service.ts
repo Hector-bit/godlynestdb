@@ -32,10 +32,18 @@ export class ArtistsService {
     const newArtist = new this.artistModel(createArtistDto);
     return newArtist.save()
   }
+  // --------------> PATCH REQUESTS FOR ARTISTS <--------------
 
   updateArtist(id: string, updateArtistDto: UpdateArtistDto) {
-    return this.artistModel.findByIdAndUpdate(id, updateArtistDto, { new: true })
+    console.log('updating: ', id, updateArtistDto)
+    return this.artistModel.findByIdAndUpdate(
+      id,
+      updateArtistDto, 
+      { new: true }
+    )
   }
+
+    // --------------> DELETE REQUESTS FOR ARTISTS <--------------
 
   async deleteArtist(id: string){
     await this.albumModel.deleteMany({ artistId: id })

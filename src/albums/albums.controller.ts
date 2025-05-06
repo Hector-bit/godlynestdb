@@ -1,4 +1,4 @@
-import { Get, Post, Delete, Patch, Param, Body } from "@nestjs/common";
+import { Get, Post, Delete, Patch, Param, Body, Query } from "@nestjs/common";
 import { Controller } from "@nestjs/common";
 import { AlbumsService } from "./albums.service";
 import { AddSongsToAlbumDto, CreateAlbumDto } from "./dto/CreateAlbum.dto";
@@ -9,7 +9,12 @@ export class AlbumsController {
   constructor(private albumsService: AlbumsService){}
 
   @Get()
-  getAlbums(){
+  getAlbums(@Query() query: { artistId: string }){
+
+    if(query){
+      return this.albumsService.getAlbums(query)
+    }
+
     return this.albumsService.getAlbums()
   }
 

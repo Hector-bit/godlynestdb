@@ -1,6 +1,7 @@
-import { Body, Controller, Param, Post, Get, Delete } from '@nestjs/common';
+import { Body, Controller, Param, Post, Get, Delete, Patch } from '@nestjs/common';
 import { CreateEventDto } from './dto/createEventDto';
 import { EventsService } from './event.service';
+import { PatchEventDto } from './dto/patchEvent.dto';
 
 //controller arg is routename i think
 @Controller('events')
@@ -29,7 +30,14 @@ export class EventsController {
     return this.eventsService.createEvent(createEventDto)
   }
 
-  // --------------> PUT REQUESTS FOR EVENTS <--------------
+  // --------------> PATCH REQUESTS FOR EVENTS <--------------
+  @Patch(':id')
+  async patchEvent(
+    @Param('id') eventId: string,
+    @Body() patchEventDto: PatchEventDto
+  ){
+    return this.eventsService.patchEvent(eventId, patchEventDto)
+  }
   
   // --------------> DELETE REQUESTS FOR EVENTS <--------------
   @Delete(':id')

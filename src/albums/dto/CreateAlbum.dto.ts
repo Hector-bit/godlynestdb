@@ -14,6 +14,9 @@ export class CreateAlbumDto {
   @IsArray()
   @IsString({ each: true})
   albumSongs?: string[]
+
+  @IsOptional()
+  img?: string
 }
 
 export class AddSongsToAlbumDto {
